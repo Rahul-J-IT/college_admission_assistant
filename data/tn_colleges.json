@@ -1,0 +1,1062 @@
+{
+  "colleges": [
+    {
+      "id": "COL001",
+      "name": "Anna University",
+      "location": "Chennai",
+      "type": "Government",
+      "established": 1978,
+      "affiliation": "Autonomous University",
+      "courses": [
+        {
+          "id": "CRS001",
+          "name": "B.E. Computer Science and Engineering",
+          "duration": "4 years",
+          "seats": 120,
+          "eligibility": {
+            "min_percentage": 75,
+            "required_subjects": ["Physics", "Chemistry", "Mathematics"],
+            "entrance_exams": ["TNEA"],
+            "age_limit": "17-25 years"
+          },
+          "fees": {
+            "tuition_per_year": 50000,
+            "hostel_per_year": 30000,
+            "other_fees": 5000
+          },
+          "application": {
+            "start_date": "2025-04-01",
+            "end_date": "2025-06-30",
+            "result_date": "2025-07-15",
+            "admission_date": "2025-08-01"
+          },
+          "required_documents": [
+            "10th Mark Sheet",
+            "12th Mark Sheet",
+            "Transfer Certificate",
+            "Community Certificate",
+            "Nativity Certificate",
+            "Aadhar Card",
+            "Passport Size Photos (10)",
+            "Medical Fitness Certificate",
+            "TNEA Rank Card"
+          ],
+          "reservation_quota": {
+            "OC": "31%",
+            "BC": "26.5%",
+            "BCM": "3.5%",
+            "MBC": "20%",
+            "SC": "15%",
+            "ST": "3.5%"
+          }
+        },
+        {
+          "id": "CRS002",
+          "name": "B.E. Electronics and Communication Engineering",
+          "duration": "4 years",
+          "seats": 60,
+          "eligibility": {
+            "min_percentage": 72,
+            "required_subjects": ["Physics", "Chemistry", "Mathematics"],
+            "entrance_exams": ["TNEA"],
+            "age_limit": "17-25 years"
+          },
+          "fees": {
+            "tuition_per_year": 50000,
+            "hostel_per_year": 30000,
+            "other_fees": 5000
+          },
+          "application": {
+            "start_date": "2025-04-01",
+            "end_date": "2025-06-30",
+            "result_date": "2025-07-15",
+            "admission_date": "2025-08-01"
+          },
+          "required_documents": [
+            "10th Mark Sheet",
+            "12th Mark Sheet",
+            "Transfer Certificate",
+            "Community Certificate",
+            "Nativity Certificate",
+            "Aadhar Card",
+            "Passport Size Photos (10)",
+            "Medical Fitness Certificate",
+            "TNEA Rank Card"
+          ],
+          "reservation_quota": {
+            "OC": "31%",
+            "BC": "26.5%",
+            "BCM": "3.5%",
+            "MBC": "20%",
+            "SC": "15%",
+            "ST": "3.5%"
+          }
+        }
+      ],
+      "contact": {
+        "address": "Sardar Patel Road, Guindy, Chennai - 600025",
+        "phone": "044-22357004",
+        "email": "registrar@annauniv.edu",
+        "website": "https://www.annauniv.edu"
+      },
+      "facilities": ["Library", "Hostel", "Sports Complex", "Research Labs", "Canteen", "Wi-Fi Campus"],
+      "ranking": {
+        "NIRF_2024": 16,
+        "state_rank": 1
+      }
+    },
+    {
+      "id": "COL002",
+      "name": "IIT Madras",
+      "location": "Chennai",
+      "type": "Government (Central)",
+      "established": 1959,
+      "affiliation": "Autonomous Institute (IIT)",
+      "courses": [
+        {
+          "id": "CRS003",
+          "name": "B.Tech Computer Science and Engineering",
+          "duration": "4 years",
+          "seats": 114,
+          "eligibility": {
+            "min_percentage": 75,
+            "required_subjects": ["Physics", "Chemistry", "Mathematics"],
+            "entrance_exams": ["JEE Advanced"],
+            "age_limit": "17-25 years",
+            "jee_advanced_cutoff": "General: 1500 rank, OBC: 3500 rank, SC/ST: 8000 rank"
+          },
+          "fees": {
+            "tuition_per_year": 200000,
+            "hostel_per_year": 25000,
+            "other_fees": 10000
+          },
+          "application": {
+            "start_date": "2025-04-15",
+            "end_date": "2025-05-15",
+            "result_date": "2025-06-10",
+            "admission_date": "2025-07-20"
+          },
+          "required_documents": [
+            "JEE Advanced Rank Card",
+            "10th Mark Sheet",
+            "12th Mark Sheet",
+            "Category Certificate (if applicable)",
+            "PwD Certificate (if applicable)",
+            "Aadhar Card",
+            "Passport Size Photos (6)",
+            "Medical Certificate"
+          ],
+          "reservation_quota": {
+            "General": "50.5%",
+            "OBC-NCL": "27%",
+            "SC": "15%",
+            "ST": "7.5%",
+            "EWS": "10%"
+          }
+        },
+        {
+          "id": "CRS004",
+          "name": "B.Tech Electrical Engineering",
+          "duration": "4 years",
+          "seats": 96,
+          "eligibility": {
+            "min_percentage": 75,
+            "required_subjects": ["Physics", "Chemistry", "Mathematics"],
+            "entrance_exams": ["JEE Advanced"],
+            "age_limit": "17-25 years"
+          },
+          "fees": {
+            "tuition_per_year": 200000,
+            "hostel_per_year": 25000,
+            "other_fees": 10000
+          },
+          "application": {
+            "start_date": "2025-04-15",
+            "end_date": "2025-05-15",
+            "result_date": "2025-06-10",
+            "admission_date": "2025-07-20"
+          },
+          "required_documents": [
+            "JEE Advanced Rank Card",
+            "10th Mark Sheet",
+            "12th Mark Sheet",
+            "Category Certificate (if applicable)",
+            "Aadhar Card",
+            "Passport Size Photos (6)",
+            "Medical Certificate"
+          ],
+          "reservation_quota": {
+            "General": "50.5%",
+            "OBC-NCL": "27%",
+            "SC": "15%",
+            "ST": "7.5%",
+            "EWS": "10%"
+          }
+        }
+      ],
+      "contact": {
+        "address": "IIT Madras, Adyar, Chennai - 600036",
+        "phone": "044-22578200",
+        "email": "admissions@iitm.ac.in",
+        "website": "https://www.iitm.ac.in"
+      },
+      "facilities": ["World-class Research Labs", "Central Library", "Sports Complex", "Hospital", "Shopping Centre", "Multiple Hostels"],
+      "ranking": {
+        "NIRF_2024": 1,
+        "state_rank": 1,
+        "world_rank": "301-400 QS"
+      }
+    },
+    {
+      "id": "COL003",
+      "name": "PSG College of Technology",
+      "location": "Coimbatore",
+      "type": "Private Aided",
+      "established": 1951,
+      "affiliation": "Anna University",
+      "courses": [
+        {
+          "id": "CRS005",
+          "name": "B.E. Mechanical Engineering",
+          "duration": "4 years",
+          "seats": 120,
+          "eligibility": {
+            "min_percentage": 70,
+            "required_subjects": ["Physics", "Chemistry", "Mathematics"],
+            "entrance_exams": ["TNEA"],
+            "age_limit": "17-25 years"
+          },
+          "fees": {
+            "tuition_per_year": 70000,
+            "hostel_per_year": 35000,
+            "other_fees": 8000
+          },
+          "application": {
+            "start_date": "2025-04-01",
+            "end_date": "2025-06-30",
+            "result_date": "2025-07-20",
+            "admission_date": "2025-08-05"
+          },
+          "required_documents": [
+            "10th Mark Sheet",
+            "12th Mark Sheet",
+            "Transfer Certificate",
+            "Community Certificate",
+            "Nativity Certificate",
+            "Aadhar Card",
+            "Passport Size Photos (8)",
+            "TNEA Rank Card",
+            "Income Certificate (for scholarship)"
+          ],
+          "reservation_quota": {
+            "OC": "31%",
+            "BC": "26.5%",
+            "BCM": "3.5%",
+            "MBC": "20%",
+            "SC": "15%",
+            "ST": "3.5%"
+          }
+        },
+        {
+          "id": "CRS006",
+          "name": "B.E. Civil Engineering",
+          "duration": "4 years",
+          "seats": 90,
+          "eligibility": {
+            "min_percentage": 65,
+            "required_subjects": ["Physics", "Chemistry", "Mathematics"],
+            "entrance_exams": ["TNEA"],
+            "age_limit": "17-25 years"
+          },
+          "fees": {
+            "tuition_per_year": 65000,
+            "hostel_per_year": 35000,
+            "other_fees": 7000
+          },
+          "application": {
+            "start_date": "2025-04-01",
+            "end_date": "2025-06-30",
+            "result_date": "2025-07-20",
+            "admission_date": "2025-08-05"
+          },
+          "required_documents": [
+            "10th Mark Sheet",
+            "12th Mark Sheet",
+            "Transfer Certificate",
+            "Community Certificate",
+            "Aadhar Card",
+            "Passport Size Photos (8)",
+            "TNEA Rank Card"
+          ],
+          "reservation_quota": {
+            "OC": "31%",
+            "BC": "26.5%",
+            "BCM": "3.5%",
+            "MBC": "20%",
+            "SC": "15%",
+            "ST": "3.5%"
+          }
+        }
+      ],
+      "contact": {
+        "address": "Peelamedu, Coimbatore - 641004",
+        "phone": "0422-4344000",
+        "email": "principal@psgtech.edu",
+        "website": "https://www.psgtech.edu"
+      },
+      "facilities": ["Library", "Hostel", "Gym", "Labs", "Canteen", "Placement Cell"],
+      "ranking": {
+        "NIRF_2024": 68,
+        "state_rank": 3
+      }
+    },
+    {
+      "id": "COL004",
+      "name": "Madras Medical College",
+      "location": "Chennai",
+      "type": "Government",
+      "established": 1835,
+      "affiliation": "The Tamil Nadu Dr. M.G.R. Medical University",
+      "courses": [
+        {
+          "id": "CRS007",
+          "name": "MBBS",
+          "duration": "5.5 years (including 1 year internship)",
+          "seats": 250,
+          "eligibility": {
+            "min_percentage": 60,
+            "required_subjects": ["Physics", "Chemistry", "Biology"],
+            "entrance_exams": ["NEET-UG"],
+            "age_limit": "17-25 years",
+            "neet_cutoff": "General: 550+, OBC: 470+, SC/ST: 400+"
+          },
+          "fees": {
+            "tuition_per_year": 13070,
+            "hostel_per_year": 20000,
+            "other_fees": 3000
+          },
+          "application": {
+            "start_date": "2025-06-01",
+            "end_date": "2025-07-15",
+            "result_date": "2025-08-01",
+            "admission_date": "2025-09-01"
+          },
+          "required_documents": [
+            "NEET Score Card",
+            "10th Mark Sheet",
+            "12th Mark Sheet",
+            "Transfer Certificate",
+            "Community Certificate",
+            "Nativity Certificate",
+            "Aadhar Card",
+            "Passport Size Photos (10)",
+            "Medical Fitness Certificate",
+            "Income Certificate",
+            "Conduct Certificate"
+          ],
+          "reservation_quota": {
+            "OC": "31%",
+            "BC": "26.5%",
+            "BCM": "3.5%",
+            "MBC": "20%",
+            "SC": "15%",
+            "ST": "3.5%"
+          }
+        },
+        {
+          "id": "CRS008",
+          "name": "B.D.S",
+          "duration": "5 years (including 1 year internship)",
+          "seats": 40,
+          "eligibility": {
+            "min_percentage": 60,
+            "required_subjects": ["Physics", "Chemistry", "Biology"],
+            "entrance_exams": ["NEET-UG"],
+            "age_limit": "17-25 years"
+          },
+          "fees": {
+            "tuition_per_year": 14000,
+            "hostel_per_year": 20000,
+            "other_fees": 3000
+          },
+          "application": {
+            "start_date": "2025-06-01",
+            "end_date": "2025-07-15",
+            "result_date": "2025-08-01",
+            "admission_date": "2025-09-01"
+          },
+          "required_documents": [
+            "NEET Score Card",
+            "10th Mark Sheet",
+            "12th Mark Sheet",
+            "Transfer Certificate",
+            "Community Certificate",
+            "Nativity Certificate",
+            "Aadhar Card",
+            "Passport Size Photos (10)",
+            "Medical Fitness Certificate"
+          ],
+          "reservation_quota": {
+            "OC": "31%",
+            "BC": "26.5%",
+            "BCM": "3.5%",
+            "MBC": "20%",
+            "SC": "15%",
+            "ST": "3.5%"
+          }
+        }
+      ],
+      "contact": {
+        "address": "Park Town, Chennai - 600003",
+        "phone": "044-25305000",
+        "email": "dean@mmc.edu.in",
+        "website": "https://www.mmc.edu.in"
+      },
+      "facilities": ["Teaching Hospital", "Library", "Hostel", "Research Centre", "Canteen"],
+      "ranking": {
+        "NIRF_2024": 5,
+        "state_rank": 1,
+        "category": "Medical"
+      }
+    },
+    {
+      "id": "COL005",
+      "name": "Coimbatore Institute of Technology",
+      "location": "Coimbatore",
+      "type": "Government Aided",
+      "established": 1956,
+      "affiliation": "Anna University",
+      "courses": [
+        {
+          "id": "CRS009",
+          "name": "B.E. Information Technology",
+          "duration": "4 years",
+          "seats": 60,
+          "eligibility": {
+            "min_percentage": 70,
+            "required_subjects": ["Physics", "Chemistry", "Mathematics"],
+            "entrance_exams": ["TNEA"],
+            "age_limit": "17-25 years"
+          },
+          "fees": {
+            "tuition_per_year": 45000,
+            "hostel_per_year": 28000,
+            "other_fees": 5000
+          },
+          "application": {
+            "start_date": "2025-04-01",
+            "end_date": "2025-06-30",
+            "result_date": "2025-07-18",
+            "admission_date": "2025-08-03"
+          },
+          "required_documents": [
+            "10th Mark Sheet",
+            "12th Mark Sheet",
+            "Transfer Certificate",
+            "Community Certificate",
+            "Nativity Certificate",
+            "Aadhar Card",
+            "Passport Size Photos (8)",
+            "TNEA Rank Card"
+          ],
+          "reservation_quota": {
+            "OC": "31%",
+            "BC": "26.5%",
+            "BCM": "3.5%",
+            "MBC": "20%",
+            "SC": "15%",
+            "ST": "3.5%"
+          }
+        }
+      ],
+      "contact": {
+        "address": "Civil Aerodrome Post, Coimbatore - 641014",
+        "phone": "0422-2574071",
+        "email": "principal@cit.edu.in",
+        "website": "https://www.cit.edu.in"
+      },
+      "facilities": ["Library", "Hostel", "Sports Ground", "Labs", "Canteen"],
+      "ranking": {
+        "NIRF_2024": 120,
+        "state_rank": 5
+      }
+    },
+    {
+      "id": "COL006",
+      "name": "Loyola College",
+      "location": "Chennai",
+      "type": "Private Aided (Minority)",
+      "established": 1925,
+      "affiliation": "University of Madras",
+      "courses": [
+        {
+          "id": "CRS010",
+          "name": "B.Sc. Computer Science",
+          "duration": "3 years",
+          "seats": 60,
+          "eligibility": {
+            "min_percentage": 60,
+            "required_subjects": ["Mathematics"],
+            "entrance_exams": ["Loyola Entrance Test"],
+            "age_limit": "17-22 years"
+          },
+          "fees": {
+            "tuition_per_year": 25000,
+            "hostel_per_year": 40000,
+            "other_fees": 5000
+          },
+          "application": {
+            "start_date": "2025-03-01",
+            "end_date": "2025-05-31",
+            "result_date": "2025-06-15",
+            "admission_date": "2025-07-01"
+          },
+          "required_documents": [
+            "10th Mark Sheet",
+            "12th Mark Sheet",
+            "Transfer Certificate",
+            "Community Certificate",
+            "Baptism/Religion Certificate (Minority)",
+            "Aadhar Card",
+            "Passport Size Photos (6)",
+            "Entrance Test Hall Ticket"
+          ],
+          "reservation_quota": {
+            "Catholic Christians": "50%",
+            "Other Christians": "10%",
+            "Other Communities": "40%"
+          }
+        },
+        {
+          "id": "CRS011",
+          "name": "B.Com",
+          "duration": "3 years",
+          "seats": 80,
+          "eligibility": {
+            "min_percentage": 55,
+            "required_subjects": ["Any commerce or science subject"],
+            "entrance_exams": ["Loyola Entrance Test"],
+            "age_limit": "17-22 years"
+          },
+          "fees": {
+            "tuition_per_year": 20000,
+            "hostel_per_year": 40000,
+            "other_fees": 4000
+          },
+          "application": {
+            "start_date": "2025-03-01",
+            "end_date": "2025-05-31",
+            "result_date": "2025-06-15",
+            "admission_date": "2025-07-01"
+          },
+          "required_documents": [
+            "10th Mark Sheet",
+            "12th Mark Sheet",
+            "Transfer Certificate",
+            "Community Certificate",
+            "Aadhar Card",
+            "Passport Size Photos (6)",
+            "Entrance Test Hall Ticket"
+          ],
+          "reservation_quota": {
+            "Catholic Christians": "50%",
+            "Other Christians": "10%",
+            "Other Communities": "40%"
+          }
+        }
+      ],
+      "contact": {
+        "address": "Nungambakkam, Chennai - 600034",
+        "phone": "044-28178200",
+        "email": "principal@loyolachennai.edu.in",
+        "website": "https://www.loyolachennai.edu.in"
+      },
+      "facilities": ["Library", "Hostel", "Chapel", "Sports Facilities", "Canteen", "Cultural Centre"],
+      "ranking": {
+        "NIRF_2024": 45,
+        "state_rank": 2,
+        "category": "Arts & Science"
+      }
+    },
+    {
+      "id": "COL007",
+      "name": "National Institute of Technology Tiruchirappalli",
+      "location": "Tiruchirappalli",
+      "type": "Government (Central)",
+      "established": 1964,
+      "affiliation": "Autonomous Institute (NIT)",
+      "courses": [
+        {
+          "id": "CRS012",
+          "name": "B.Tech Computer Science and Engineering",
+          "duration": "4 years",
+          "seats": 150,
+          "eligibility": {
+            "min_percentage": 75,
+            "required_subjects": ["Physics", "Chemistry", "Mathematics"],
+            "entrance_exams": ["JEE Main"],
+            "age_limit": "17-25 years",
+            "jee_cutoff": "General: 15000 rank, OBC: 30000 rank, SC/ST: 80000 rank"
+          },
+          "fees": {
+            "tuition_per_year": 125000,
+            "hostel_per_year": 20000,
+            "other_fees": 8000
+          },
+          "application": {
+            "start_date": "2025-04-15",
+            "end_date": "2025-06-01",
+            "result_date": "2025-06-25",
+            "admission_date": "2025-07-15"
+          },
+          "required_documents": [
+            "JEE Main Score Card",
+            "JoSAA Allotment Letter",
+            "10th Mark Sheet",
+            "12th Mark Sheet",
+            "Category Certificate (if applicable)",
+            "PwD Certificate (if applicable)",
+            "Aadhar Card",
+            "Passport Size Photos (8)",
+            "Medical Certificate"
+          ],
+          "reservation_quota": {
+            "General": "50.5%",
+            "OBC-NCL": "27%",
+            "SC": "15%",
+            "ST": "7.5%",
+            "EWS": "10%"
+          }
+        },
+        {
+          "id": "CRS013",
+          "name": "B.Tech Chemical Engineering",
+          "duration": "4 years",
+          "seats": 80,
+          "eligibility": {
+            "min_percentage": 75,
+            "required_subjects": ["Physics", "Chemistry", "Mathematics"],
+            "entrance_exams": ["JEE Main"],
+            "age_limit": "17-25 years"
+          },
+          "fees": {
+            "tuition_per_year": 125000,
+            "hostel_per_year": 20000,
+            "other_fees": 8000
+          },
+          "application": {
+            "start_date": "2025-04-15",
+            "end_date": "2025-06-01",
+            "result_date": "2025-06-25",
+            "admission_date": "2025-07-15"
+          },
+          "required_documents": [
+            "JEE Main Score Card",
+            "JoSAA Allotment Letter",
+            "10th Mark Sheet",
+            "12th Mark Sheet",
+            "Category Certificate (if applicable)",
+            "Aadhar Card",
+            "Passport Size Photos (8)",
+            "Medical Certificate"
+          ],
+          "reservation_quota": {
+            "General": "50.5%",
+            "OBC-NCL": "27%",
+            "SC": "15%",
+            "ST": "7.5%",
+            "EWS": "10%"
+          }
+        }
+      ],
+      "contact": {
+        "address": "National Highway 67, Tiruchirappalli - 620015",
+        "phone": "0431-2503000",
+        "email": "admissions@nitt.edu",
+        "website": "https://www.nitt.edu"
+      },
+      "facilities": ["Central Library", "Hostels", "Sports Complex", "Hospital", "Canteen", "Shopping Centre"],
+      "ranking": {
+        "NIRF_2024": 8,
+        "state_rank": 2
+      }
+    },
+    {
+      "id": "COL008",
+      "name": "Madurai Kamaraj University",
+      "location": "Madurai",
+      "type": "Government University",
+      "established": 1966,
+      "affiliation": "Autonomous University",
+      "courses": [
+        {
+          "id": "CRS014",
+          "name": "B.Sc. Physics",
+          "duration": "3 years",
+          "seats": 40,
+          "eligibility": {
+            "min_percentage": 55,
+            "required_subjects": ["Physics", "Chemistry", "Mathematics"],
+            "entrance_exams": ["MKU Entrance"],
+            "age_limit": "17-25 years"
+          },
+          "fees": {
+            "tuition_per_year": 8000,
+            "hostel_per_year": 15000,
+            "other_fees": 2000
+          },
+          "application": {
+            "start_date": "2025-05-01",
+            "end_date": "2025-06-30",
+            "result_date": "2025-07-10",
+            "admission_date": "2025-07-25"
+          },
+          "required_documents": [
+            "10th Mark Sheet",
+            "12th Mark Sheet",
+            "Transfer Certificate",
+            "Community Certificate",
+            "Nativity Certificate",
+            "Aadhar Card",
+            "Passport Size Photos (6)",
+            "Income Certificate"
+          ],
+          "reservation_quota": {
+            "OC": "31%",
+            "BC": "26.5%",
+            "BCM": "3.5%",
+            "MBC": "20%",
+            "SC": "15%",
+            "ST": "3.5%"
+          }
+        },
+        {
+          "id": "CRS015",
+          "name": "M.A. Tamil Literature",
+          "duration": "2 years",
+          "seats": 30,
+          "eligibility": {
+            "min_percentage": 50,
+            "required_subjects": ["Tamil Literature or any Arts subject"],
+            "entrance_exams": ["MKU PG Entrance"],
+            "age_limit": "No upper limit"
+          },
+          "fees": {
+            "tuition_per_year": 5000,
+            "hostel_per_year": 15000,
+            "other_fees": 1500
+          },
+          "application": {
+            "start_date": "2025-05-01",
+            "end_date": "2025-06-30",
+            "result_date": "2025-07-10",
+            "admission_date": "2025-07-25"
+          },
+          "required_documents": [
+            "UG Degree Certificate",
+            "UG Mark Sheets",
+            "Transfer Certificate",
+            "Community Certificate",
+            "Aadhar Card",
+            "Passport Size Photos (4)"
+          ],
+          "reservation_quota": {
+            "OC": "31%",
+            "BC": "26.5%",
+            "BCM": "3.5%",
+            "MBC": "20%",
+            "SC": "15%",
+            "ST": "3.5%"
+          }
+        }
+      ],
+      "contact": {
+        "address": "Palkalai Nagar, Madurai - 625021",
+        "phone": "0452-2458471",
+        "email": "registrar@mkuniversity.ac.in",
+        "website": "https://www.mkuniversity.ac.in"
+      },
+      "facilities": ["Central Library", "Hostels", "Swimming Pool", "Research Centres", "Canteen"],
+      "ranking": {
+        "NIRF_2024": 55,
+        "state_rank": 4
+      }
+    },
+    {
+      "id": "COL009",
+      "name": "Sri Ramachandra Institute of Higher Education",
+      "location": "Chennai",
+      "type": "Deemed University",
+      "established": 1985,
+      "affiliation": "Autonomous Deemed University",
+      "courses": [
+        {
+          "id": "CRS016",
+          "name": "MBBS",
+          "duration": "5.5 years",
+          "seats": 150,
+          "eligibility": {
+            "min_percentage": 60,
+            "required_subjects": ["Physics", "Chemistry", "Biology"],
+            "entrance_exams": ["NEET-UG"],
+            "age_limit": "17-25 years",
+            "neet_cutoff": "General: 580+, OBC: 500+, SC/ST: 440+"
+          },
+          "fees": {
+            "tuition_per_year": 1500000,
+            "hostel_per_year": 80000,
+            "other_fees": 20000
+          },
+          "application": {
+            "start_date": "2025-06-01",
+            "end_date": "2025-07-31",
+            "result_date": "2025-08-15",
+            "admission_date": "2025-09-01"
+          },
+          "required_documents": [
+            "NEET Score Card",
+            "10th Mark Sheet",
+            "12th Mark Sheet",
+            "Transfer Certificate",
+            "Community Certificate",
+            "Nativity Certificate",
+            "Aadhar Card",
+            "Passport Size Photos (10)",
+            "Medical Certificate",
+            "Character Certificate"
+          ],
+          "reservation_quota": {
+            "Management Quota": "15%",
+            "NRI Quota": "15%",
+            "Government Quota": "65%",
+            "SC": "Included in Govt Quota",
+            "ST": "Included in Govt Quota"
+          }
+        },
+        {
+          "id": "CRS017",
+          "name": "B.Sc. Nursing",
+          "duration": "4 years",
+          "seats": 60,
+          "eligibility": {
+            "min_percentage": 55,
+            "required_subjects": ["Physics", "Chemistry", "Biology"],
+            "entrance_exams": ["NEET-UG", "Institution Entrance"],
+            "age_limit": "17-35 years"
+          },
+          "fees": {
+            "tuition_per_year": 100000,
+            "hostel_per_year": 60000,
+            "other_fees": 10000
+          },
+          "application": {
+            "start_date": "2025-05-01",
+            "end_date": "2025-07-15",
+            "result_date": "2025-07-31",
+            "admission_date": "2025-08-15"
+          },
+          "required_documents": [
+            "NEET Score Card",
+            "10th Mark Sheet",
+            "12th Mark Sheet",
+            "Transfer Certificate",
+            "Community Certificate",
+            "Aadhar Card",
+            "Passport Size Photos (8)",
+            "Medical Fitness Certificate"
+          ],
+          "reservation_quota": {
+            "Management Quota": "25%",
+            "Government Quota": "75%"
+          }
+        }
+      ],
+      "contact": {
+        "address": "No. 1, Ramachandra Nagar, Porur, Chennai - 600116",
+        "phone": "044-45928500",
+        "email": "admissions@sriramachandra.edu.in",
+        "website": "https://www.sriramachandra.edu.in"
+      },
+      "facilities": ["Teaching Hospital (1500 beds)", "Library", "Hostels", "Gym", "Research Labs", "Canteen"],
+      "ranking": {
+        "NIRF_2024": 25,
+        "state_rank": 2,
+        "category": "Medical"
+      }
+    },
+    {
+      "id": "COL010",
+      "name": "Vellore Institute of Technology (VIT)",
+      "location": "Vellore",
+      "type": "Deemed University",
+      "established": 1984,
+      "affiliation": "Autonomous Deemed University",
+      "courses": [
+        {
+          "id": "CRS018",
+          "name": "B.Tech Computer Science and Engineering",
+          "duration": "4 years",
+          "seats": 600,
+          "eligibility": {
+            "min_percentage": 60,
+            "required_subjects": ["Physics", "Chemistry", "Mathematics"],
+            "entrance_exams": ["VITEEE"],
+            "age_limit": "17-25 years",
+            "viteee_cutoff": "Rank within 50000"
+          },
+          "fees": {
+            "tuition_per_year": 198000,
+            "hostel_per_year": 90000,
+            "other_fees": 15000
+          },
+          "application": {
+            "start_date": "2025-01-15",
+            "end_date": "2025-03-31",
+            "result_date": "2025-04-20",
+            "admission_date": "2025-06-01"
+          },
+          "required_documents": [
+            "VITEEE Score Card",
+            "10th Mark Sheet",
+            "12th Mark Sheet",
+            "Transfer Certificate",
+            "Community Certificate (if applicable)",
+            "Aadhar Card",
+            "Passport Size Photos (6)",
+            "Medical Certificate"
+          ],
+          "reservation_quota": {
+            "Management Seats": "100% - Merit based on VITEEE"
+          }
+        },
+        {
+          "id": "CRS019",
+          "name": "B.Tech Biomedical Engineering",
+          "duration": "4 years",
+          "seats": 120,
+          "eligibility": {
+            "min_percentage": 60,
+            "required_subjects": ["Physics", "Chemistry", "Mathematics/Biology"],
+            "entrance_exams": ["VITEEE"],
+            "age_limit": "17-25 years"
+          },
+          "fees": {
+            "tuition_per_year": 185000,
+            "hostel_per_year": 90000,
+            "other_fees": 15000
+          },
+          "application": {
+            "start_date": "2025-01-15",
+            "end_date": "2025-03-31",
+            "result_date": "2025-04-20",
+            "admission_date": "2025-06-01"
+          },
+          "required_documents": [
+            "VITEEE Score Card",
+            "10th Mark Sheet",
+            "12th Mark Sheet",
+            "Transfer Certificate",
+            "Aadhar Card",
+            "Passport Size Photos (6)",
+            "Medical Certificate"
+          ],
+          "reservation_quota": {
+            "Management Seats": "100% - Merit based on VITEEE"
+          }
+        }
+      ],
+      "contact": {
+        "address": "VIT University, Tiruvalam Road, Vellore - 632014",
+        "phone": "0416-2202020",
+        "email": "admissions@vit.ac.in",
+        "website": "https://www.vit.ac.in"
+      },
+      "facilities": ["Multiple Libraries", "Hostels", "Shopping Mall", "Hospital", "Sports Arena", "Multiple Cafeterias"],
+      "ranking": {
+        "NIRF_2024": 12,
+        "state_rank": 1,
+        "category": "Engineering (Private)"
+      }
+    }
+  ],
+  "entrance_exams": {
+    "TNEA": {
+      "full_name": "Tamil Nadu Engineering Admissions",
+      "conducted_by": "Anna University",
+      "for_courses": "Engineering UG courses in TN",
+      "based_on": "12th Board Marks (No Entrance Test)",
+      "application_period": "April - June",
+      "official_site": "https://www.tneaonline.org"
+    },
+    "NEET-UG": {
+      "full_name": "National Eligibility cum Entrance Test (UG)",
+      "conducted_by": "NTA",
+      "for_courses": "MBBS, BDS, BAMS, BSMS, BHMS",
+      "pattern": "720 marks (Physics 180, Chemistry 180, Biology 360)",
+      "application_period": "February - March",
+      "exam_date": "May",
+      "official_site": "https://neet.nta.nic.in"
+    },
+    "JEE Main": {
+      "full_name": "Joint Entrance Examination Main",
+      "conducted_by": "NTA",
+      "for_courses": "NITs, IIITs, GFTIs Engineering",
+      "pattern": "300 marks (Physics, Chemistry, Mathematics - 100 each)",
+      "sessions": "January and April",
+      "official_site": "https://jeemain.nta.nic.in"
+    },
+    "JEE Advanced": {
+      "full_name": "Joint Entrance Examination Advanced",
+      "conducted_by": "IITs (on rotation)",
+      "for_courses": "IITs Engineering/Science",
+      "eligibility": "Top 2.5 lakh in JEE Main",
+      "official_site": "https://jeeadv.ac.in"
+    },
+    "VITEEE": {
+      "full_name": "VIT Engineering Entrance Examination",
+      "conducted_by": "VIT University",
+      "for_courses": "B.Tech programs at VIT",
+      "pattern": "125 questions - PCM + English + Aptitude",
+      "application_period": "October - March",
+      "official_site": "https://www.viteee.vit.ac.in"
+    }
+  },
+  "scholarships": [
+    {
+      "name": "Tamil Nadu Government Scholarship",
+      "for": "SC/ST students",
+      "amount": "Full tuition fee + maintenance allowance",
+      "eligibility": "Community Certificate, Income < 2.5 lakh/year"
+    },
+    {
+      "name": "BC/MBC Scholarship",
+      "for": "BC, MBC and Minority students",
+      "amount": "Up to Rs. 10,000 per year",
+      "eligibility": "Community Certificate, Income < 1 lakh/year"
+    },
+    {
+      "name": "Post-Matric Scholarship",
+      "for": "SC/ST students pursuing higher education",
+      "amount": "Maintenance allowance + course fee",
+      "eligibility": "Community Certificate, Income < 2.5 lakh/year"
+    },
+    {
+      "name": "INSPIRE Scholarship (DST)",
+      "for": "Students in natural sciences",
+      "amount": "Rs. 80,000 per year",
+      "eligibility": "Top 1% in 12th boards or JEE/NEET qualifying"
+    },
+    {
+      "name": "National Scholarship Portal Scholarships",
+      "for": "Meritorious students from economically weaker sections",
+      "amount": "Varies by course and category",
+      "eligibility": "Apply at scholarships.gov.in"
+    }
+  ],
+  "important_helplines": {
+    "TNEA_helpline": "044-22357004",
+    "NEET_helpline": "011-40759000",
+    "Anna_University_admissions": "044-22357004",
+    "Tamil_Nadu_Education_Dept": "044-28514188"
+  }
+}

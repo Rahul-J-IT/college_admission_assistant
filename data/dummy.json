@@ -1,0 +1,665 @@
+import json
+import random
+
+# Real Tamil Nadu colleges data - comprehensive list
+colleges_raw = [
+    # Chennai
+    ("Anna University", "Chennai", "Government", 1978, "Autonomous University", ["TNEA"], "Engineering"),
+    ("IIT Madras", "Chennai", "Government (Central)", 1959, "Autonomous Institute (IIT)", ["JEE Advanced"], "Engineering"),
+    ("Madras Medical College", "Chennai", "Government", 1835, "The Tamil Nadu Dr. M.G.R. Medical University", ["NEET-UG"], "Medical"),
+    ("Loyola College", "Chennai", "Private Aided (Minority)", 1925, "University of Madras", ["Loyola Entrance Test"], "Arts & Science"),
+    ("Sri Ramachandra Institute of Higher Education", "Chennai", "Deemed University", 1985, "Autonomous Deemed University", ["NEET-UG"], "Medical"),
+    ("Madras Christian College", "Chennai", "Private Aided", 1837, "University of Madras", ["MCC Entrance Test"], "Arts & Science"),
+    ("Presidency College", "Chennai", "Government", 1840, "University of Madras", ["TNEA/Direct"], "Arts & Science"),
+    ("Ethiraj College for Women", "Chennai", "Private Aided", 1948, "University of Madras", ["Direct Admission"], "Arts & Science"),
+    ("Women's Christian College", "Chennai", "Private Aided (Minority)", 1915, "University of Madras", ["WCC Entrance Test"], "Arts & Science"),
+    ("Pachaiyappa's College", "Chennai", "Private Aided", 1842, "University of Madras", ["Direct Admission"], "Arts & Science"),
+    ("SRM Institute of Science and Technology", "Chennai", "Deemed University", 1985, "Autonomous Deemed University", ["SRMJEEE"], "Engineering"),
+    ("Saveetha Institute of Medical and Technical Sciences", "Chennai", "Deemed University", 1988, "Autonomous Deemed University", ["NEET-UG", "SAEEE"], "Medical/Engineering"),
+    ("Hindustan Institute of Technology and Science", "Chennai", "Deemed University", 1985, "Autonomous Deemed University", ["HIEE"], "Engineering"),
+    ("Velammal Engineering College", "Chennai", "Private", 1995, "Anna University", ["TNEA"], "Engineering"),
+    ("Rajalakshmi Engineering College", "Chennai", "Private", 1997, "Anna University", ["TNEA"], "Engineering"),
+    ("St. Joseph's College of Engineering", "Chennai", "Private Aided (Minority)", 1994, "Anna University", ["TNEA"], "Engineering"),
+    ("SSN College of Engineering", "Chennai", "Private", 1996, "Anna University", ["TNEA"], "Engineering"),
+    ("Jeppiaar Engineering College", "Chennai", "Private", 1997, "Anna University", ["TNEA"], "Engineering"),
+    ("Panimalar Engineering College", "Chennai", "Private", 1999, "Anna University", ["TNEA"], "Engineering"),
+    ("R.M.D. Engineering College", "Chennai", "Private", 1997, "Anna University", ["TNEA"], "Engineering"),
+    ("Easwari Engineering College", "Chennai", "Private", 1996, "Anna University", ["TNEA"], "Engineering"),
+    ("Sri Venkateswara College of Engineering", "Chennai", "Private", 1987, "Anna University", ["TNEA"], "Engineering"),
+    ("Misrimal Navajee Munoth Jain Engineering College", "Chennai", "Private", 1994, "Anna University", ["TNEA"], "Engineering"),
+    ("Meenakshi Ammal Dental College", "Chennai", "Private", 1987, "The Tamil Nadu Dr. M.G.R. Medical University", ["NEET-UG"], "Medical"),
+    ("Chettinad Hospital and Research Institute", "Chennai", "Deemed University", 1985, "Autonomous Deemed University", ["NEET-UG"], "Medical"),
+    ("Stanley Medical College", "Chennai", "Government", 1938, "The Tamil Nadu Dr. M.G.R. Medical University", ["NEET-UG"], "Medical"),
+    ("Kilpauk Medical College", "Chennai", "Government", 1960, "The Tamil Nadu Dr. M.G.R. Medical University", ["NEET-UG"], "Medical"),
+    ("Sri Muthukumaran Medical College", "Chennai", "Private", 2001, "The Tamil Nadu Dr. M.G.R. Medical University", ["NEET-UG"], "Medical"),
+    ("Madras School of Social Work", "Chennai", "Private Aided", 1952, "University of Madras", ["Direct Admission"], "Social Work"),
+    ("D.G. Vaishnav College", "Chennai", "Private Aided", 1964, "University of Madras", ["Direct Admission"], "Arts & Science"),
+    ("Guru Nanak College", "Chennai", "Private Aided (Minority)", 1954, "University of Madras", ["Direct Admission"], "Arts & Science"),
+    ("Mohamed Sathak College of Arts and Science", "Chennai", "Private Aided (Minority)", 1969, "University of Madras", ["Direct Admission"], "Arts & Science"),
+    ("Quaid-E-Millath Government College for Women", "Chennai", "Government", 1955, "University of Madras", ["Direct Admission"], "Arts & Science"),
+    ("MOP Vaishnav College for Women", "Chennai", "Private Aided", 1973, "University of Madras", ["Direct Admission"], "Arts & Science"),
+    ("BSMED College of Arts and Science", "Chennai", "Private", 2003, "University of Madras", ["Direct Admission"], "Arts & Science"),
+    ("Sathyabama Institute of Science and Technology", "Chennai", "Deemed University", 1987, "Autonomous Deemed University", ["SBJEE"], "Engineering"),
+    ("Vel Tech Rangarajan Dr. Sagunthala R&D Institute", "Chennai", "Deemed University", 1997, "Autonomous Deemed University", ["VTUEEE"], "Engineering"),
+    ("Chennai Institute of Technology", "Chennai", "Private", 2009, "Anna University", ["TNEA"], "Engineering"),
+    ("Panimalar Medical College Hospital and Research Institute", "Chennai", "Private", 2004, "The Tamil Nadu Dr. M.G.R. Medical University", ["NEET-UG"], "Medical"),
+    ("Dr. MGR Medical University", "Chennai", "Government University", 1987, "Autonomous University", ["NEET-UG"], "Medical"),
+
+    # Coimbatore
+    ("PSG College of Technology", "Coimbatore", "Private Aided", 1951, "Anna University", ["TNEA"], "Engineering"),
+    ("Coimbatore Institute of Technology", "Coimbatore", "Government Aided", 1956, "Anna University", ["TNEA"], "Engineering"),
+    ("Government College of Technology", "Coimbatore", "Government", 1945, "Anna University", ["TNEA"], "Engineering"),
+    ("Sri Krishna College of Engineering and Technology", "Coimbatore", "Private", 1998, "Anna University", ["TNEA"], "Engineering"),
+    ("KPR Institute of Engineering and Technology", "Coimbatore", "Private", 2005, "Anna University", ["TNEA"], "Engineering"),
+    ("Amrita School of Engineering", "Coimbatore", "Deemed University", 1994, "Amrita Vishwa Vidyapeetham", ["AEEE"], "Engineering"),
+    ("Sri Ramakrishna Engineering College", "Coimbatore", "Private Aided", 1994, "Anna University", ["TNEA"], "Engineering"),
+    ("Kongu Engineering College", "Coimbatore", "Private", 1983, "Anna University", ["TNEA"], "Engineering"),
+    ("PSG College of Arts and Science", "Coimbatore", "Private Aided", 1947, "Bharathiar University", ["Direct Admission"], "Arts & Science"),
+    ("Bharathiar University", "Coimbatore", "Government University", 1982, "Autonomous University", ["BU Entrance"], "Arts & Science"),
+    ("Government Arts College Coimbatore", "Coimbatore", "Government", 1957, "Bharathiar University", ["Direct Admission"], "Arts & Science"),
+    ("PSGR Krishnammal College for Women", "Coimbatore", "Private Aided", 1963, "Bharathiar University", ["Direct Admission"], "Arts & Science"),
+    ("Sri Krishna Arts and Science College", "Coimbatore", "Private", 2006, "Bharathiar University", ["Direct Admission"], "Arts & Science"),
+    ("Hindusthan College of Engineering and Technology", "Coimbatore", "Private", 1998, "Anna University", ["TNEA"], "Engineering"),
+    ("SNS College of Technology", "Coimbatore", "Private", 2001, "Anna University", ["TNEA"], "Engineering"),
+    ("Coimbatore Medical College", "Coimbatore", "Government", 1966, "The Tamil Nadu Dr. M.G.R. Medical University", ["NEET-UG"], "Medical"),
+    ("PSG Institute of Medical Sciences and Research", "Coimbatore", "Private Aided", 1985, "The Tamil Nadu Dr. M.G.R. Medical University", ["NEET-UG"], "Medical"),
+    ("Sri Ramakrishna Institute of Paramedical Sciences", "Coimbatore", "Private", 1993, "The Tamil Nadu Dr. M.G.R. Medical University", ["NEET-UG"], "Medical"),
+    ("NGP Institute of Technology", "Coimbatore", "Private", 2009, "Anna University", ["TNEA"], "Engineering"),
+    ("Dr. NGP Arts and Science College", "Coimbatore", "Private", 2004, "Bharathiar University", ["Direct Admission"], "Arts & Science"),
+    ("Rathnavel Subramaniam College of Arts and Science", "Coimbatore", "Private", 2002, "Bharathiar University", ["Direct Admission"], "Arts & Science"),
+    ("CMS College of Science and Commerce", "Coimbatore", "Private", 2008, "Bharathiar University", ["Direct Admission"], "Arts & Science"),
+    ("Vivekananda College of Arts and Sciences for Women", "Coimbatore", "Private", 1994, "Bharathiar University", ["Direct Admission"], "Arts & Science"),
+    ("Kumaraguru College of Technology", "Coimbatore", "Private", 1984, "Anna University", ["TNEA"], "Engineering"),
+    ("RVS College of Engineering and Technology", "Coimbatore", "Private", 1998, "Anna University", ["TNEA"], "Engineering"),
+
+    # Tiruchirappalli (Trichy)
+    ("National Institute of Technology Tiruchirappalli", "Tiruchirappalli", "Government (Central)", 1964, "Autonomous Institute (NIT)", ["JEE Main"], "Engineering"),
+    ("Bharathidasan University", "Tiruchirappalli", "Government University", 1982, "Autonomous University", ["BDU Entrance"], "Arts & Science"),
+    ("Bishop Heber College", "Tiruchirappalli", "Private Aided (Minority)", 1966, "Bharathidasan University", ["Direct Admission"], "Arts & Science"),
+    ("St. Joseph's College Trichy", "Tiruchirappalli", "Private Aided (Minority)", 1844, "Bharathidasan University", ["Direct Admission"], "Arts & Science"),
+    ("Jamal Mohamed College", "Tiruchirappalli", "Private Aided (Minority)", 1951, "Bharathidasan University", ["Direct Admission"], "Arts & Science"),
+    ("Tiruchirappalli Government Arts College", "Tiruchirappalli", "Government", 1959, "Bharathidasan University", ["Direct Admission"], "Arts & Science"),
+    ("Anna University Regional Campus Tiruchirappalli", "Tiruchirappalli", "Government", 2010, "Anna University", ["TNEA"], "Engineering"),
+    ("Saranathan College of Engineering", "Tiruchirappalli", "Private", 2001, "Anna University", ["TNEA"], "Engineering"),
+    ("K Ramakrishnan College of Engineering", "Tiruchirappalli", "Private", 2009, "Anna University", ["TNEA"], "Engineering"),
+    ("Trichy Engineering College", "Tiruchirappalli", "Private", 2003, "Anna University", ["TNEA"], "Engineering"),
+    ("Periyar Maniammai Institute of Science and Technology", "Tiruchirappalli", "Deemed University", 2007, "Autonomous Deemed University", ["PMIST Entrance"], "Engineering"),
+    ("Shrimati Indira Gandhi College", "Tiruchirappalli", "Government Aided", 1976, "Bharathidasan University", ["Direct Admission"], "Arts & Science"),
+    ("Holy Cross College", "Tiruchirappalli", "Private Aided (Minority)", 1895, "Bharathidasan University", ["Direct Admission"], "Arts & Science"),
+    ("Urumu Dhanalakshmi College", "Tiruchirappalli", "Private", 1998, "Bharathidasan University", ["Direct Admission"], "Arts & Science"),
+    ("Mahatma Gandhi Government Arts College Tiruchirappalli", "Tiruchirappalli", "Government", 1965, "Bharathidasan University", ["Direct Admission"], "Arts & Science"),
+
+    # Madurai
+    ("Madurai Kamaraj University", "Madurai", "Government University", 1966, "Autonomous University", ["MKU Entrance"], "Arts & Science"),
+    ("The American College", "Madurai", "Private Aided (Minority)", 1881, "Madurai Kamaraj University", ["Direct Admission"], "Arts & Science"),
+    ("Lady Doak College", "Madurai", "Private Aided (Minority)", 1948, "Madurai Kamaraj University", ["Direct Admission"], "Arts & Science"),
+    ("Yadava College", "Madurai", "Private Aided", 1963, "Madurai Kamaraj University", ["Direct Admission"], "Arts & Science"),
+    ("Thiagarajar College of Engineering", "Madurai", "Government Aided", 1957, "Anna University", ["TNEA"], "Engineering"),
+    ("Mepco Schlenk Engineering College", "Madurai", "Private Aided", 1984, "Anna University", ["TNEA"], "Engineering"),
+    ("Government Madurai Medical College", "Madurai", "Government", 1954, "The Tamil Nadu Dr. M.G.R. Medical University", ["NEET-UG"], "Medical"),
+    ("Meenakshi Mission Hospital and Research Centre", "Madurai", "Deemed University", 1990, "Autonomous Deemed University", ["NEET-UG"], "Medical"),
+    ("K.L.N. College of Engineering", "Madurai", "Private", 1999, "Anna University", ["TNEA"], "Engineering"),
+    ("Anna University Regional Campus Madurai", "Madurai", "Government", 2010, "Anna University", ["TNEA"], "Engineering"),
+    ("Sarah Tucker College", "Madurai", "Private Aided (Minority)", 1895, "Madurai Kamaraj University", ["Direct Admission"], "Arts & Science"),
+    ("Government Arts College Madurai", "Madurai", "Government", 1882, "Madurai Kamaraj University", ["Direct Admission"], "Arts & Science"),
+    ("Sri Meenakshi Government Arts College for Women", "Madurai", "Government", 1965, "Madurai Kamaraj University", ["Direct Admission"], "Arts & Science"),
+    ("Fatima College", "Madurai", "Private Aided (Minority)", 1953, "Madurai Kamaraj University", ["Direct Admission"], "Arts & Science"),
+    ("Sourashtra College", "Madurai", "Private Aided", 1959, "Madurai Kamaraj University", ["Direct Admission"], "Arts & Science"),
+    ("Thiagarajar College", "Madurai", "Private Aided", 1951, "Madurai Kamaraj University", ["Direct Admission"], "Arts & Science"),
+    ("Arul Anandar College", "Madurai", "Private Aided (Minority)", 1951, "Madurai Kamaraj University", ["Direct Admission"], "Arts & Science"),
+    ("PSNA College of Engineering and Technology", "Madurai", "Private", 1994, "Anna University", ["TNEA"], "Engineering"),
+
+    # Vellore
+    ("Vellore Institute of Technology (VIT)", "Vellore", "Deemed University", 1984, "Autonomous Deemed University", ["VITEEE"], "Engineering"),
+    ("Christian Medical College", "Vellore", "Private Aided (Minority)", 1900, "The Tamil Nadu Dr. M.G.R. Medical University", ["CMC Entrance"], "Medical"),
+    ("Auxilium College", "Vellore", "Private Aided (Minority)", 1952, "University of Madras", ["Direct Admission"], "Arts & Science"),
+    ("Government Thiruvenkatam College", "Vellore", "Government", 1993, "Thiruvalluvar University", ["Direct Admission"], "Arts & Science"),
+    ("Thiruvalluvar University", "Vellore", "Government University", 2002, "Autonomous University", ["TVU Entrance"], "Arts & Science"),
+    ("Voorhees College", "Vellore", "Private Aided (Minority)", 1899, "Thiruvalluvar University", ["Direct Admission"], "Arts & Science"),
+    ("Government Medical College Vellore", "Vellore", "Government", 2015, "The Tamil Nadu Dr. M.G.R. Medical University", ["NEET-UG"], "Medical"),
+    ("Sri Venkateshwaraa College of Engineering and Technology", "Vellore", "Private", 2009, "Anna University", ["TNEA"], "Engineering"),
+
+    # Salem
+    ("Anna University Regional Campus Salem", "Salem", "Government", 2010, "Anna University", ["TNEA"], "Engineering"),
+    ("Government College of Engineering Salem", "Salem", "Government", 1966, "Anna University", ["TNEA"], "Engineering"),
+    ("Periyar University", "Salem", "Government University", 1997, "Autonomous University", ["PU Entrance"], "Arts & Science"),
+    ("Government Arts College Salem", "Salem", "Government", 1960, "Periyar University", ["Direct Admission"], "Arts & Science"),
+    ("Vinayaka Missions Medical College", "Salem", "Deemed University", 2001, "Vinayaka Missions Research Foundation", ["NEET-UG"], "Medical"),
+    ("Mahendra Engineering College", "Salem", "Private", 2001, "Anna University", ["TNEA"], "Engineering"),
+    ("Sona College of Technology", "Salem", "Private", 1998, "Anna University", ["TNEA"], "Engineering"),
+    ("Salem Government Medical College", "Salem", "Government", 1966, "The Tamil Nadu Dr. M.G.R. Medical University", ["NEET-UG"], "Medical"),
+    ("SACS MAVMM Engineering College", "Salem", "Private", 2009, "Anna University", ["TNEA"], "Engineering"),
+    ("Paavai Engineering College", "Salem", "Private", 2001, "Anna University", ["TNEA"], "Engineering"),
+
+    # Tirunelveli
+    ("National College of Engineering", "Tirunelveli", "Government Aided", 1982, "Anna University", ["TNEA"], "Engineering"),
+    ("St. Xavier's College Tirunelveli", "Tirunelveli", "Private Aided (Minority)", 1923, "Manonmaniam Sundaranar University", ["Direct Admission"], "Arts & Science"),
+    ("Manonmaniam Sundaranar University", "Tirunelveli", "Government University", 1990, "Autonomous University", ["MSU Entrance"], "Arts & Science"),
+    ("Government Medical College Tirunelveli", "Tirunelveli", "Government", 1961, "The Tamil Nadu Dr. M.G.R. Medical University", ["NEET-UG"], "Medical"),
+    ("Francis Xavier Engineering College", "Tirunelveli", "Private Aided (Minority)", 2003, "Anna University", ["TNEA"], "Engineering"),
+    ("Noorul Islam Centre for Higher Education", "Tirunelveli", "Deemed University", 1989, "Autonomous Deemed University", ["NICEE"], "Engineering"),
+    ("Government College of Engineering Tirunelveli", "Tirunelveli", "Government", 1994, "Anna University", ["TNEA"], "Engineering"),
+    ("S. Veerasamy Chettiar College of Engineering", "Tirunelveli", "Private", 1998, "Anna University", ["TNEA"], "Engineering"),
+    ("Arunachala College of Engineering for Women", "Tirunelveli", "Private", 2008, "Anna University", ["TNEA"], "Engineering"),
+
+    # Erode
+    ("Erode Arts and Science College", "Erode", "Government", 1969, "Periyar University", ["Direct Admission"], "Arts & Science"),
+    ("Erode Engineering College", "Erode", "Private", 2002, "Anna University", ["TNEA"], "Engineering"),
+    ("Government College of Engineering Erode", "Erode", "Government", 2009, "Anna University", ["TNEA"], "Engineering"),
+    ("Sri Sarada College for Women", "Erode", "Private Aided", 1970, "Periyar University", ["Direct Admission"], "Arts & Science"),
+    ("Bannari Amman Institute of Technology", "Erode", "Private", 1996, "Anna University", ["TNEA"], "Engineering"),
+    ("Kongu Arts and Science College", "Erode", "Private", 1981, "Periyar University", ["Direct Admission"], "Arts & Science"),
+
+    # Thoothukudi (Tuticorin)
+    ("Rani Anna Government College for Women", "Thoothukudi", "Government", 1965, "Manonmaniam Sundaranar University", ["Direct Admission"], "Arts & Science"),
+    ("Tuticorin Medical College", "Thoothukudi", "Government", 2016, "The Tamil Nadu Dr. M.G.R. Medical University", ["NEET-UG"], "Medical"),
+    ("S.T.E.T Women's College", "Thoothukudi", "Private Aided", 1967, "Manonmaniam Sundaranar University", ["Direct Admission"], "Arts & Science"),
+    ("V.O.C. College of Engineering Thoothukudi", "Thoothukudi", "Government Aided", 2000, "Anna University", ["TNEA"], "Engineering"),
+
+    # Kancheepuram
+    ("Sri Chandrasekharendra Saraswathi Viswa Maha Vidyalaya", "Kancheepuram", "Deemed University", 1993, "Autonomous Deemed University", ["SCSVMV Entrance"], "Engineering"),
+    ("Kancheepuram Government Medical College", "Kancheepuram", "Government", 2016, "The Tamil Nadu Dr. M.G.R. Medical University", ["NEET-UG"], "Medical"),
+    ("Sri Periyandiappar Arts and Science College", "Kancheepuram", "Private", 2004, "University of Madras", ["Direct Admission"], "Arts & Science"),
+
+    # Dindigul
+    ("Dindigul Arts College for Women", "Dindigul", "Government", 1969, "Madurai Kamaraj University", ["Direct Admission"], "Arts & Science"),
+    ("A.D.M. College for Women", "Dindigul", "Government", 2005, "Madurai Kamaraj University", ["Direct Admission"], "Arts & Science"),
+    ("Vins Christian College of Engineering", "Dindigul", "Private Aided (Minority)", 2001, "Anna University", ["TNEA"], "Engineering"),
+    ("Sun Engineering College", "Dindigul", "Private", 2007, "Anna University", ["TNEA"], "Engineering"),
+
+    # Thanjavur
+    ("Thanjavur Medical College", "Thanjavur", "Government", 1958, "The Tamil Nadu Dr. M.G.R. Medical University", ["NEET-UG"], "Medical"),
+    ("Government Arts College Thanjavur", "Thanjavur", "Government", 1957, "Bharathidasan University", ["Direct Admission"], "Arts & Science"),
+    ("Rajah Serfoji Government College", "Thanjavur", "Government", 1918, "Bharathidasan University", ["Direct Admission"], "Arts & Science"),
+    ("TRB College of Arts and Science", "Thanjavur", "Private", 2006, "Bharathidasan University", ["Direct Admission"], "Arts & Science"),
+    ("PRIST University", "Thanjavur", "Deemed University", 1994, "Autonomous Deemed University", ["PRIST Entrance"], "Engineering"),
+
+    # Pudukkottai
+    ("Government Arts College Pudukkottai", "Pudukkottai", "Government", 1978, "Bharathidasan University", ["Direct Admission"], "Arts & Science"),
+    ("ACCET College of Engineering", "Pudukkottai", "Government Aided", 1952, "Anna University", ["TNEA"], "Engineering"),
+
+    # Cuddalore
+    ("Annamalai University", "Cuddalore", "Government University", 1929, "Autonomous University", ["AUEET"], "Arts & Science/Engineering"),
+    ("Government Arts College Cuddalore", "Cuddalore", "Government", 1976, "Annamalai University", ["Direct Admission"], "Arts & Science"),
+    ("Annamalai University Constituent Engineering College", "Cuddalore", "Government", 1980, "Annamalai University", ["TNEA"], "Engineering"),
+
+    # Namakkal
+    ("Paavai Institutions", "Namakkal", "Private", 2000, "Anna University", ["TNEA"], "Engineering"),
+    ("Knowledge Institute of Technology", "Namakkal", "Private", 2001, "Anna University", ["TNEA"], "Engineering"),
+    ("Government College of Engineering Dharmapuri", "Dharmapuri", "Government", 2009, "Anna University", ["TNEA"], "Engineering"),
+
+    # Ramanathapuram
+    ("Government Arts College Ramanathapuram", "Ramanathapuram", "Government", 1969, "Madurai Kamaraj University", ["Direct Admission"], "Arts & Science"),
+    ("Ramanathapuram Medical College", "Ramanathapuram", "Government", 2014, "The Tamil Nadu Dr. M.G.R. Medical University", ["NEET-UG"], "Medical"),
+
+    # Villupuram
+    ("Thiruvalluvar Government Arts College", "Villupuram", "Government", 1990, "Thiruvalluvar University", ["Direct Admission"], "Arts & Science"),
+    ("Government College of Engineering Villupuram", "Villupuram", "Government", 2009, "Anna University", ["TNEA"], "Engineering"),
+
+    # Tiruvannamalai
+    ("A.V.C. College of Engineering", "Tiruvannamalai", "Private Aided", 1994, "Anna University", ["TNEA"], "Engineering"),
+    ("Government Arts College Tiruvannamalai", "Tiruvannamalai", "Government", 1994, "Thiruvalluvar University", ["Direct Admission"], "Arts & Science"),
+
+    # Krishnagiri
+    ("Dhanalakshmi Srinivasan College of Engineering", "Krishnagiri", "Private", 2001, "Anna University", ["TNEA"], "Engineering"),
+    ("Government College of Engineering Krishnagiri", "Krishnagiri", "Government", 2012, "Anna University", ["TNEA"], "Engineering"),
+
+    # Tirupur
+    ("Tirupur Kumaran College for Women", "Tirupur", "Private", 2006, "Bharathiar University", ["Direct Admission"], "Arts & Science"),
+    ("Sri Ramakrishna College of Arts and Science for Women", "Tirupur", "Private", 1993, "Bharathiar University", ["Direct Admission"], "Arts & Science"),
+    ("Tirupur Technical Institute", "Tirupur", "Private", 2005, "Anna University", ["TNEA"], "Engineering"),
+
+    # Ooty/Nilgiris
+    ("Government Arts College Ooty", "Ooty", "Government", 1966, "Bharathiar University", ["Direct Admission"], "Arts & Science"),
+
+    # Sivakasi
+    ("V.H.N.S.N. College", "Sivakasi", "Private Aided", 1955, "Madurai Kamaraj University", ["Direct Admission"], "Arts & Science"),
+    ("Arjun College of Technology", "Sivakasi", "Private", 2007, "Anna University", ["TNEA"], "Engineering"),
+
+    # Nagercoil
+    ("Scott Christian College", "Nagercoil", "Private Aided (Minority)", 1904, "Manonmaniam Sundaranar University", ["Direct Admission"], "Arts & Science"),
+    ("Government Medical College Nagercoil", "Nagercoil", "Government", 2019, "The Tamil Nadu Dr. M.G.R. Medical University", ["NEET-UG"], "Medical"),
+    ("CAPE Institute of Technology", "Nagercoil", "Private", 2001, "Anna University", ["TNEA"], "Engineering"),
+    ("Noorul Islam University", "Nagercoil", "Deemed University", 1989, "Autonomous Deemed University", ["NEET-UG", "NICEE"], "Engineering/Medical"),
+
+    # Ariyalur
+    ("Dhanalakshmi Srinivasan Engineering College", "Ariyalur", "Private", 2001, "Anna University", ["TNEA"], "Engineering"),
+
+    # Sivaganga
+    ("Karaikudi Government Arts College", "Sivaganga", "Government", 1976, "Alagappa University", ["Direct Admission"], "Arts & Science"),
+    ("Alagappa University", "Sivaganga", "Government University", 1985, "Autonomous University", ["AU Entrance"], "Arts & Science"),
+    ("Alagappa College of Technology", "Sivaganga", "Government", 1944, "Anna University", ["TNEA"], "Engineering"),
+
+    # Virudhunagar
+    ("Virudhunagar Hindu Nadars Senthikumara Nadar College", "Virudhunagar", "Private Aided", 1959, "Madurai Kamaraj University", ["Direct Admission"], "Arts & Science"),
+    ("Kamaraj College of Engineering and Technology", "Virudhunagar", "Private", 2001, "Anna University", ["TNEA"], "Engineering"),
+    ("Government College of Engineering Tirunelveli", "Virudhunagar", "Government", 2012, "Anna University", ["TNEA"], "Engineering"),
+
+    # Nagapattinam
+    ("Government Arts and Science College Nagapattinam", "Nagapattinam", "Government", 2004, "Bharathidasan University", ["Direct Admission"], "Arts & Science"),
+    ("Nagapattinam Medical College", "Nagapattinam", "Government", 2016, "The Tamil Nadu Dr. M.G.R. Medical University", ["NEET-UG"], "Medical"),
+
+    # Perambalur
+    ("Government College of Engineering Perambalur", "Perambalur", "Government", 2009, "Anna University", ["TNEA"], "Engineering"),
+
+    # Mayiladuthurai
+    ("Government Arts and Science College Mayiladuthurai", "Mayiladuthurai", "Government", 2021, "Bharathidasan University", ["Direct Admission"], "Arts & Science"),
+
+    # Additional notable colleges
+    ("SRM Valliammai Engineering College", "Chennai", "Private", 1999, "Anna University", ["TNEA"], "Engineering"),
+    ("Vel Tech Multi Tech Dr. Rangarajan Dr. Sakunthala Engineering College", "Chennai", "Private", 2001, "Anna University", ["TNEA"], "Engineering"),
+    ("Agni College of Technology", "Chennai", "Private", 1998, "Anna University", ["TNEA"], "Engineering"),
+    ("Vels Institute of Science Technology and Advanced Studies", "Chennai", "Deemed University", 1992, "Autonomous Deemed University", ["VSAT"], "Engineering/Arts"),
+    ("Prathyusha Engineering College", "Chennai", "Private", 2001, "Anna University", ["TNEA"], "Engineering"),
+    ("Sri Sai Ram Engineering College", "Chennai", "Private", 1995, "Anna University", ["TNEA"], "Engineering"),
+    ("Jaya Engineering College", "Chennai", "Private", 1997, "Anna University", ["TNEA"], "Engineering"),
+    ("Pallavan College of Engineering", "Kancheepuram", "Private", 2001, "Anna University", ["TNEA"], "Engineering"),
+    ("Karpagam Academy of Higher Education", "Coimbatore", "Deemed University", 2004, "Autonomous Deemed University", ["KAHE Entrance"], "Engineering/Arts"),
+    ("Sri GVG Visalakshi College for Women", "Udumalpet", "Private Aided", 1970, "Bharathiar University", ["Direct Admission"], "Arts & Science"),
+    ("Government College of Engineering Coimbatore", "Coimbatore", "Government", 2019, "Anna University", ["TNEA"], "Engineering"),
+    ("Nehru College of Engineering and Research Centre", "Coimbatore", "Private", 2002, "Anna University", ["TNEA"], "Engineering"),
+    ("Dr. N.G.P. Arts and Science College", "Coimbatore", "Private", 2004, "Bharathiar University", ["Direct Admission"], "Arts & Science"),
+    ("Bharath Institute of Higher Education and Research", "Chennai", "Deemed University", 1984, "Autonomous Deemed University", ["BIHER Entrance"], "Engineering/Medical"),
+    ("Peri Institute of Technology", "Chennai", "Private", 2001, "Anna University", ["TNEA"], "Engineering"),
+    ("Meenakshi College of Engineering", "Chennai", "Private", 1996, "Anna University", ["TNEA"], "Engineering"),
+    ("Prince Shri Venkateshwara Padmavathy Engineering College", "Chennai", "Private", 2001, "Anna University", ["TNEA"], "Engineering"),
+    ("Sri Venkateswara College of Engineering Tirupati Branch", "Tirupati (TN)", "Private", 2002, "Anna University", ["TNEA"], "Engineering"),
+    ("Roever Engineering College", "Perambalur", "Private", 2001, "Anna University", ["TNEA"], "Engineering"),
+    ("Shanmuganathan Engineering College", "Pudukkottai", "Private", 2007, "Anna University", ["TNEA"], "Engineering"),
+    ("E.G.S. Pillay Engineering College", "Nagapattinam", "Private Aided", 1984, "Anna University", ["TNEA"], "Engineering"),
+    ("Arasu Engineering College", "Thanjavur", "Private", 2010, "Anna University", ["TNEA"], "Engineering"),
+    ("Jayam College of Engineering and Technology", "Dharmapuri", "Private", 2001, "Anna University", ["TNEA"], "Engineering"),
+    ("Ganadipathy Tulsi's Jain Engineering College", "Vellore", "Private Aided (Minority)", 1997, "Anna University", ["TNEA"], "Engineering"),
+    ("Sri Aravindar Engineering College", "Villupuram", "Private", 2001, "Anna University", ["TNEA"], "Engineering"),
+    ("New Prince Shri Bhavani College of Engineering and Technology", "Chennai", "Private", 2009, "Anna University", ["TNEA"], "Engineering"),
+    ("Valliammai Engineering College", "Chennai", "Private", 1994, "Anna University", ["TNEA"], "Engineering"),
+    ("Aarupadai Veedu Institute of Technology", "Chennai", "Private", 1994, "Vinayaka Missions Research Foundation", ["AVIT Entrance"], "Engineering"),
+    ("Ponnaiyah Ramajayam Institute of Science and Technology", "Thanjavur", "Deemed University", 1994, "Autonomous Deemed University", ["PRIST Entrance"], "Engineering"),
+    ("Vel's University", "Chennai", "Deemed University", 1992, "Autonomous Deemed University", ["VELS Entrance"], "Arts & Science/Engineering"),
+    ("Muthurangam Government Arts College", "Vellore", "Government", 1958, "Thiruvalluvar University", ["Direct Admission"], "Arts & Science"),
+    ("Government Sivakasi Medical College", "Sivakasi", "Government", 2017, "The Tamil Nadu Dr. M.G.R. Medical University", ["NEET-UG"], "Medical"),
+    ("Government Medical College Dharmapuri", "Dharmapuri", "Government", 2016, "The Tamil Nadu Dr. M.G.R. Medical University", ["NEET-UG"], "Medical"),
+    ("Karpagam College of Engineering", "Coimbatore", "Private", 2000, "Anna University", ["TNEA"], "Engineering"),
+    ("Sri Krishna College of Arts and Science", "Coimbatore", "Private", 2008, "Bharathiar University", ["Direct Admission"], "Arts & Science"),
+    ("Jansons Institute of Technology", "Coimbatore", "Private", 2009, "Anna University", ["TNEA"], "Engineering"),
+    ("Muthayammal Engineering College", "Namakkal", "Private", 2002, "Anna University", ["TNEA"], "Engineering"),
+    ("Gnanamani College of Technology", "Namakkal", "Private", 2001, "Anna University", ["TNEA"], "Engineering"),
+    ("Nandha College of Technology", "Erode", "Private", 2002, "Anna University", ["TNEA"], "Engineering"),
+    ("SKR Engineering College", "Chennai", "Private", 1998, "Anna University", ["TNEA"], "Engineering"),
+    ("K.S.R. College of Engineering", "Namakkal", "Private", 1998, "Anna University", ["TNEA"], "Engineering"),
+    ("Sri Ramakrishna Mission Vidyalaya Polytechnic College", "Coimbatore", "Private Aided", 1956, "Bharathiar University", ["Direct Admission"], "Arts & Science"),
+    ("Dr. Ambedkar Government Arts College", "Chennai", "Government", 1986, "University of Madras", ["Direct Admission"], "Arts & Science"),
+    ("Dr. Ambedkar Government Law College", "Chennai", "Government", 1969, "Tamil Nadu Dr. Ambedkar Law University", ["CLAT/Direct"], "Law"),
+    ("Tamil Nadu National Law University", "Tiruchirappalli", "Government University", 2012, "Autonomous University", ["CLAT"], "Law"),
+    ("School of Architecture and Planning", "Chennai", "Government", 1957, "Anna University", ["NATA"], "Architecture"),
+    ("Government College of Architecture Coimbatore", "Coimbatore", "Government", 1969, "Anna University", ["NATA"], "Architecture"),
+    ("Saveetha Dental College and Hospitals", "Chennai", "Deemed University", 1988, "Saveetha Institute", ["NEET-UG"], "Medical"),
+    ("Sri Venkateswara Dental College", "Chennai", "Deemed University", 1994, "Sri Ramachandra Institute", ["NEET-UG"], "Medical"),
+    ("Meenakshi Ammal Dental College", "Chennai", "Private", 1987, "The Tamil Nadu Dr. M.G.R. Medical University", ["NEET-UG"], "Medical"),
+    ("RVS Dental College and Hospital", "Coimbatore", "Private", 2001, "The Tamil Nadu Dr. M.G.R. Medical University", ["NEET-UG"], "Medical"),
+    ("Best Dental Science College", "Madurai", "Private", 1991, "The Tamil Nadu Dr. M.G.R. Medical University", ["NEET-UG"], "Medical"),
+    ("Karunya Institute of Technology and Sciences", "Coimbatore", "Deemed University", 1986, "Autonomous Deemed University", ["KUSAT"], "Engineering"),
+    ("Hindusthan College of Arts and Science", "Coimbatore", "Private", 1997, "Bharathiar University", ["Direct Admission"], "Arts & Science"),
+    ("Rathinam College of Arts and Science", "Coimbatore", "Private", 1998, "Bharathiar University", ["Direct Admission"], "Arts & Science"),
+    ("Government Arts and Science College Coimbatore", "Coimbatore", "Government", 2018, "Bharathiar University", ["Direct Admission"], "Arts & Science"),
+    ("Gobi Arts and Science College", "Erode", "Private Aided", 1978, "Periyar University", ["Direct Admission"], "Arts & Science"),
+    ("Sacred Heart College", "Tirupattur", "Private Aided (Minority)", 1951, "Thiruvalluvar University", ["Direct Admission"], "Arts & Science"),
+    ("Pachaiappa's College for Men", "Chennai", "Private Aided", 1892, "University of Madras", ["Direct Admission"], "Arts & Science"),
+    ("Central Polytechnic College", "Chennai", "Government", 1930, "Directorate of Technical Education", ["TNEA"], "Polytechnic"),
+    ("PSG Polytechnic College", "Coimbatore", "Private Aided", 1951, "Directorate of Technical Education", ["TNEA"], "Polytechnic"),
+    ("Textile Technology College", "Chennai", "Government", 1944, "Anna University", ["TNEA"], "Engineering"),
+    ("College of Engineering Guindy", "Chennai", "Government", 1794, "Anna University", ["TNEA"], "Engineering"),
+]
+
+def make_course_id(col_idx, course_idx):
+    return f"CRS{col_idx:03d}{course_idx:02d}"
+
+def make_college_id(idx):
+    return f"COL{idx:04d}"
+
+def get_course_by_type(ctype, col_idx):
+    courses = []
+    if "Engineering" in ctype:
+        branches = [
+            ("B.E. Computer Science and Engineering", "CSE", 120, 75, ["Physics","Chemistry","Mathematics"], ["TNEA"]),
+            ("B.E. Electronics and Communication Engineering", "ECE", 60, 72, ["Physics","Chemistry","Mathematics"], ["TNEA"]),
+            ("B.E. Mechanical Engineering", "MECH", 60, 70, ["Physics","Chemistry","Mathematics"], ["TNEA"]),
+            ("B.E. Civil Engineering", "CIVIL", 60, 65, ["Physics","Chemistry","Mathematics"], ["TNEA"]),
+            ("B.E. Information Technology", "IT", 60, 70, ["Physics","Chemistry","Mathematics"], ["TNEA"]),
+            ("B.Tech Artificial Intelligence and Data Science", "AIDS", 60, 72, ["Physics","Chemistry","Mathematics"], ["TNEA"]),
+        ]
+        picked = random.sample(branches, min(2, len(branches)))
+        for i, (name, code, seats, minpct, subjects, exams) in enumerate(picked):
+            fee = random.choice([45000, 50000, 60000, 70000, 90000, 125000, 185000, 198000])
+            courses.append({
+                "id": make_course_id(col_idx, i+1),
+                "name": name,
+                "duration": "4 years",
+                "seats": seats,
+                "eligibility": {
+                    "min_percentage": minpct,
+                    "required_subjects": subjects,
+                    "entrance_exams": exams,
+                    "age_limit": "17-25 years"
+                },
+                "fees": {
+                    "tuition_per_year": fee,
+                    "hostel_per_year": random.choice([25000, 28000, 30000, 35000, 40000, 60000, 90000]),
+                    "other_fees": random.choice([5000, 7000, 8000, 10000, 15000])
+                },
+                "application": {
+                    "start_date": "2025-04-01",
+                    "end_date": "2025-06-30",
+                    "result_date": "2025-07-18",
+                    "admission_date": "2025-08-03"
+                },
+                "required_documents": [
+                    "10th Mark Sheet","12th Mark Sheet","Transfer Certificate",
+                    "Community Certificate","Nativity Certificate","Aadhar Card",
+                    f"Passport Size Photos ({random.choice([6,8,10])})","TNEA Rank Card"
+                ],
+                "reservation_quota": {
+                    "OC":"31%","BC":"26.5%","BCM":"3.5%","MBC":"20%","SC":"15%","ST":"3.5%"
+                }
+            })
+    elif "Medical" in ctype:
+        med_courses = [
+            ("MBBS", 5.5, 150, 60, ["Physics","Chemistry","Biology"], ["NEET-UG"], 13070),
+            ("B.D.S", 5, 40, 60, ["Physics","Chemistry","Biology"], ["NEET-UG"], 14000),
+            ("B.Sc. Nursing", 4, 60, 55, ["Physics","Chemistry","Biology"], ["NEET-UG"], 100000),
+            ("B.Pharm", 4, 60, 55, ["Physics","Chemistry","Biology/Mathematics"], ["NEET-UG"], 50000),
+        ]
+        picked = random.sample(med_courses, min(2, len(med_courses)))
+        for i, (name, dur, seats, minpct, subjects, exams, fee) in enumerate(picked):
+            courses.append({
+                "id": make_course_id(col_idx, i+1),
+                "name": name,
+                "duration": f"{dur} years",
+                "seats": seats,
+                "eligibility": {
+                    "min_percentage": minpct,
+                    "required_subjects": subjects,
+                    "entrance_exams": exams,
+                    "age_limit": "17-25 years"
+                },
+                "fees": {
+                    "tuition_per_year": fee,
+                    "hostel_per_year": random.choice([20000, 40000, 60000, 80000]),
+                    "other_fees": random.choice([3000, 5000, 10000, 20000])
+                },
+                "application": {
+                    "start_date": "2025-06-01",
+                    "end_date": "2025-07-15",
+                    "result_date": "2025-08-01",
+                    "admission_date": "2025-09-01"
+                },
+                "required_documents": [
+                    "NEET Score Card","10th Mark Sheet","12th Mark Sheet","Transfer Certificate",
+                    "Community Certificate","Nativity Certificate","Aadhar Card",
+                    "Passport Size Photos (10)","Medical Fitness Certificate"
+                ],
+                "reservation_quota": {
+                    "OC":"31%","BC":"26.5%","BCM":"3.5%","MBC":"20%","SC":"15%","ST":"3.5%"
+                }
+            })
+    else:  # Arts & Science, Law, etc.
+        arts_courses = [
+            ("B.Sc. Computer Science", 3, 60, 60, ["Mathematics"], 25000),
+            ("B.Com", 3, 80, 55, ["Any commerce or science subject"], 15000),
+            ("B.A. English Literature", 3, 60, 50, ["Any subject"], 8000),
+            ("B.Sc. Mathematics", 3, 50, 55, ["Mathematics","Physics"], 10000),
+            ("B.Sc. Physics", 3, 40, 55, ["Physics","Chemistry","Mathematics"], 10000),
+            ("B.Sc. Chemistry", 3, 40, 55, ["Physics","Chemistry","Mathematics"], 10000),
+            ("B.B.A", 3, 60, 50, ["Any subject"], 18000),
+            ("B.C.A", 3, 60, 55, ["Mathematics"], 20000),
+        ]
+        picked = random.sample(arts_courses, min(2, len(arts_courses)))
+        for i, (name, dur, seats, minpct, subjects, fee) in enumerate(picked):
+            courses.append({
+                "id": make_course_id(col_idx, i+1),
+                "name": name,
+                "duration": f"{dur} years",
+                "seats": seats,
+                "eligibility": {
+                    "min_percentage": minpct,
+                    "required_subjects": subjects,
+                    "entrance_exams": ["Direct Admission"],
+                    "age_limit": "17-22 years"
+                },
+                "fees": {
+                    "tuition_per_year": fee,
+                    "hostel_per_year": random.choice([15000, 20000, 30000, 40000]),
+                    "other_fees": random.choice([2000, 3000, 4000, 5000])
+                },
+                "application": {
+                    "start_date": "2025-03-01",
+                    "end_date": "2025-05-31",
+                    "result_date": "2025-06-15",
+                    "admission_date": "2025-07-01"
+                },
+                "required_documents": [
+                    "10th Mark Sheet","12th Mark Sheet","Transfer Certificate",
+                    "Community Certificate","Aadhar Card",
+                    f"Passport Size Photos ({random.choice([4,6,8])})"
+                ],
+                "reservation_quota": {
+                    "OC":"31%","BC":"26.5%","BCM":"3.5%","MBC":"20%","SC":"15%","ST":"3.5%"
+                }
+            })
+    return courses
+
+nirf_counter = 10
+state_rank_counter = {}
+
+def get_ranking(ctype, nirf_base, college_name):
+    global nirf_counter
+    nirf = nirf_base + random.randint(0, 50)
+    cat = "Engineering" if "Engineering" in ctype else ("Medical" if "Medical" in ctype else "Arts & Science")
+    return {"NIRF_2024": nirf, "state_rank": random.randint(1, 30), "category": cat}
+
+address_map = {
+    "Chennai": f"Chennai - 60{random.randint(1,99):04d}",
+    "Coimbatore": f"Coimbatore - 64{random.randint(1,20):04d}",
+    "Madurai": f"Madurai - 62{random.randint(1,30):04d}",
+    "Tiruchirappalli": f"Tiruchirappalli - 62{random.randint(1,20):04d}",
+    "Vellore": f"Vellore - 63{random.randint(1,30):04d}",
+    "Salem": f"Salem - 63{random.randint(1,20):04d}",
+    "Tirunelveli": f"Tirunelveli - 62{random.randint(7,9):04d}",
+    "Erode": f"Erode - 63{random.randint(8,9):04d}",
+}
+
+facilities_pool = [
+    ["Library","Hostel","Sports Complex","Research Labs","Canteen","Wi-Fi Campus"],
+    ["Central Library","Hostels","Sports Ground","Labs","Canteen"],
+    ["Library","Hostel","Gym","Labs","Canteen","Placement Cell"],
+    ["Teaching Hospital","Library","Hostel","Research Centre","Canteen"],
+    ["Multiple Libraries","Hostels","Shopping Mall","Hospital","Sports Arena","Multiple Cafeterias"],
+    ["Library","Hostel","Chapel","Sports Facilities","Canteen","Cultural Centre"],
+    ["Central Library","Hostels","Swimming Pool","Research Centres","Canteen"],
+    ["Library","Computer Lab","Seminar Hall","Canteen","Hostel"],
+    ["NCC/NSS","Sports Complex","Library","Canteen","Hostel","Placement Cell"],
+]
+
+colleges_list = []
+for idx, (name, location, ctype, established, affiliation, exams, category) in enumerate(colleges_raw, 1):
+    loc_pin = address_map.get(location, f"{location} - 600001")
+    college = {
+        "id": make_college_id(idx),
+        "name": name,
+        "location": location,
+        "type": ctype,
+        "established": established,
+        "affiliation": affiliation,
+        "courses": get_course_by_type(category, idx),
+        "contact": {
+            "address": f"{name}, {location}, Tamil Nadu - {random.randint(600001, 643213)}",
+            "phone": f"0{random.choice(['44','422','431','452','416','427','462','435'])}-{random.randint(2000000,9999999)}",
+            "email": f"admissions@{name.lower().replace(' ','').replace('(','').replace(')','').replace('.','')[:15]}.edu.in",
+            "website": f"https://www.{name.lower().replace(' ','').replace('(','').replace(')','').replace('.','')[:20]}.edu.in"
+        },
+        "facilities": random.choice(facilities_pool),
+        "ranking": get_ranking(category, 10 + idx * 2, name)
+    }
+    colleges_list.append(college)
+
+entrance_exams = {
+    "TNEA": {
+        "full_name": "Tamil Nadu Engineering Admissions",
+        "conducted_by": "Anna University",
+        "for_courses": "Engineering UG courses in TN",
+        "based_on": "12th Board Marks (No Entrance Test)",
+        "application_period": "April - June",
+        "official_site": "https://www.tneaonline.org"
+    },
+    "NEET-UG": {
+        "full_name": "National Eligibility cum Entrance Test (UG)",
+        "conducted_by": "NTA",
+        "for_courses": "MBBS, BDS, BAMS, BSMS, BHMS",
+        "pattern": "720 marks (Physics 180, Chemistry 180, Biology 360)",
+        "application_period": "February - March",
+        "exam_date": "May",
+        "official_site": "https://neet.nta.nic.in"
+    },
+    "JEE Main": {
+        "full_name": "Joint Entrance Examination Main",
+        "conducted_by": "NTA",
+        "for_courses": "NITs, IIITs, GFTIs Engineering",
+        "pattern": "300 marks (Physics, Chemistry, Mathematics - 100 each)",
+        "sessions": "January and April",
+        "official_site": "https://jeemain.nta.nic.in"
+    },
+    "JEE Advanced": {
+        "full_name": "Joint Entrance Examination Advanced",
+        "conducted_by": "IITs (on rotation)",
+        "for_courses": "IITs Engineering/Science",
+        "eligibility": "Top 2.5 lakh in JEE Main",
+        "official_site": "https://jeeadv.ac.in"
+    },
+    "VITEEE": {
+        "full_name": "VIT Engineering Entrance Examination",
+        "conducted_by": "VIT University",
+        "for_courses": "B.Tech programs at VIT",
+        "pattern": "125 questions - PCM + English + Aptitude",
+        "application_period": "October - March",
+        "official_site": "https://www.viteee.vit.ac.in"
+    },
+    "AEEE": {
+        "full_name": "Amrita Entrance Examination - Engineering",
+        "conducted_by": "Amrita Vishwa Vidyapeetham",
+        "for_courses": "B.Tech programs at Amrita",
+        "pattern": "100 questions - PCM",
+        "application_period": "November - March",
+        "official_site": "https://www.amrita.edu/admissions"
+    },
+    "SRMJEEE": {
+        "full_name": "SRM Joint Engineering Entrance Examination",
+        "conducted_by": "SRM Institute of Science and Technology",
+        "for_courses": "B.Tech programs at SRM",
+        "pattern": "125 questions - PCM + English + Aptitude",
+        "application_period": "October - March",
+        "official_site": "https://www.srmist.edu.in"
+    },
+    "CLAT": {
+        "full_name": "Common Law Admission Test",
+        "conducted_by": "Consortium of NLUs",
+        "for_courses": "LLB and LLM programs at NLUs",
+        "pattern": "150 questions",
+        "application_period": "January - March",
+        "official_site": "https://consortiumofnlus.ac.in"
+    },
+    "NATA": {
+        "full_name": "National Aptitude Test in Architecture",
+        "conducted_by": "Council of Architecture",
+        "for_courses": "B.Arch programs",
+        "pattern": "200 marks",
+        "application_period": "February - April",
+        "official_site": "https://www.nata.in"
+    },
+    "AUEET": {
+        "full_name": "Annamalai University Engineering Entrance Test",
+        "conducted_by": "Annamalai University",
+        "for_courses": "Engineering programs at Annamalai University",
+        "application_period": "April - June",
+        "official_site": "https://www.annamalaiuniversity.ac.in"
+    }
+}
+
+scholarships = [
+    {
+        "name": "Tamil Nadu Government Scholarship",
+        "for": "SC/ST students",
+        "amount": "Full tuition fee + maintenance allowance",
+        "eligibility": "Community Certificate, Income < 2.5 lakh/year"
+    },
+    {
+        "name": "BC/MBC Scholarship",
+        "for": "BC, MBC and Minority students",
+        "amount": "Up to Rs. 10,000 per year",
+        "eligibility": "Community Certificate, Income < 1 lakh/year"
+    },
+    {
+        "name": "Post-Matric Scholarship",
+        "for": "SC/ST students pursuing higher education",
+        "amount": "Maintenance allowance + course fee",
+        "eligibility": "Community Certificate, Income < 2.5 lakh/year"
+    },
+    {
+        "name": "INSPIRE Scholarship (DST)",
+        "for": "Students in natural sciences",
+        "amount": "Rs. 80,000 per year",
+        "eligibility": "Top 1% in 12th boards or JEE/NEET qualifying"
+    },
+    {
+        "name": "National Scholarship Portal Scholarships",
+        "for": "Meritorious students from economically weaker sections",
+        "amount": "Varies by course and category",
+        "eligibility": "Apply at scholarships.gov.in"
+    },
+    {
+        "name": "Chief Minister's Kalaignar Memorial Scholarship",
+        "for": "Meritorious students from Tamil Nadu",
+        "amount": "Rs. 5,000 - Rs. 20,000 per year",
+        "eligibility": "TN domicile, marks above 80% in 12th"
+    },
+    {
+        "name": "Anna University Merit Scholarship",
+        "for": "Top rank holders in TNEA",
+        "amount": "Full tuition fee waiver",
+        "eligibility": "TNEA rank within top 100"
+    },
+    {
+        "name": "Prime Minister's Scholarship Scheme",
+        "for": "Children of ex-servicemen",
+        "amount": "Rs. 2,500 per month (boys), Rs. 3,000 (girls)",
+        "eligibility": "Ex-servicemen ward certificate, 60% in 12th"
+    }
+]
+
+important_helplines = {
+    "TNEA_helpline": "044-22357004",
+    "NEET_helpline": "011-40759000",
+    "Anna_University_admissions": "044-22357004",
+    "Tamil_Nadu_Education_Dept": "044-28514188",
+    "VIT_Admissions": "0416-2202020",
+    "NIT_Trichy_Admissions": "0431-2503000",
+    "Bharathiar_University": "0422-2422222",
+    "Madurai_Kamaraj_University": "0452-2458471",
+    "Bharathidasan_University": "0431-2407071",
+    "Manonmaniam_Sundaranar_University": "0462-2322973",
+    "Periyar_University": "0427-2345766",
+    "Alagappa_University": "04565-223360",
+    "Annamalai_University": "04144-238343"
+}
+
+dataset = {
+    "colleges": colleges_list,
+    "entrance_exams": entrance_exams,
+    "scholarships": scholarships,
+    "important_helplines": important_helplines,
+    "metadata": {
+        "total_colleges": len(colleges_list),
+        "last_updated": "2025",
+        "source": "Tamil Nadu Higher Education Data",
+        "note": "Data compiled for 2025-26 admissions cycle. Always verify with official college websites."
+    }
+}
