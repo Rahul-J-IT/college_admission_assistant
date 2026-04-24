@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TN College Admissions AI</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <i class="ph ph-graduation-cap logo-icon"></i>
+                <div class="logo-text">
+                    <h2>TN AI</h2>
+                    <span>Admissions Guide</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <button class="nav-item active" data-tab="chat">
+                    <i class="ph ph-chat-teardrop-text"></i>
+                    <span>AI Chat</span>
+                </button>
+                <button class="nav-item" data-tab="colleges">
+                    <i class="ph ph-buildings"></i>
+                    <span>Browse Colleges</span>
+                </button>
+                <button class="nav-item" data-tab="checklist">
+                    <i class="ph ph-check-square-offset"></i>
+                    <span>Checklist</span>
+                </button>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="status-indicator">
+                    <span class="pulse"></span>
+                    <span class="status-text">System Online</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+
+            <div class="tab-container">
+                <!-- Tab: Chat -->
+                <section id="chat" class="tab-content active">
+                    <div class="chat-container">
+                        <div class="chat-history" id="chat-history">
+                            <div class="chat-ai intro-msg">
+                                <div class="chat-label label-ai">
+                                    <i class="ph-fill ph-robot"></i> AI Counselor
+                                </div>
+                                <div class="msg-body">
+                                    Hello! I'm your AI guide for Tamil Nadu College Admissions. Ask me anything about Anna University cutoffs, TNEA processes, or scholarships!
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="input-area">
+                            <form id="chat-form">
+                                <input type="text" id="chat-input" placeholder="e.g. What documents do I need for Anna University CSE?" required autocomplete="off">
+                                <button type="submit" id="send-btn">
+                                    <span>Send</span>
+                                    <i class="ph ph-paper-plane-right"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Tab: Colleges -->
+                <section id="colleges" class="tab-content">
+                    <div class="colleges-container">
+                        <div class="filter-bar">
+                            <input type="text" id="college-search" placeholder="Search colleges...">
+                        </div>
+                        <div class="colleges-grid" id="colleges-grid">
+                            <div class="loader">Loading colleges...</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Tab: Checklist -->
+                <section id="checklist" class="tab-content">
+                    <div class="checklist-container">
+                        <h2 class="section-title">Admission Process Checklist</h2>
+                        <div class="timeline" id="checklist-timeline">
+                            <div class="loader">Loading checklist...</div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Script references -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="/static/app.js"></script>
+</body>
+</html>

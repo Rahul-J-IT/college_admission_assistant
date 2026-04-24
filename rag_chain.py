@@ -61,6 +61,13 @@ def _get_session_history(session_id: str):
     return _session_history[session_id]
 
 
+def clear_session_history(session_id: str = "default") -> None:
+    """Clear the in-memory chat history for a session."""
+    if session_id in _session_history:
+        _session_history[session_id].clear()
+        del _session_history[session_id]
+
+
 # ─────────────────────────────
 # Prompt
 # ─────────────────────────────
