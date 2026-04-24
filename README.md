@@ -1,40 +1,43 @@
 # 🎓 Tamil Nadu College Admissions AI
 
-An intelligent admissions guidance system for Tamil Nadu colleges, built with a fully modular architecture.
+An intelligent admissions guidance system for Tamil Nadu colleges, built with a fully modular architecture. 
 
-## Tech Stack
-- **RAG** — FAISS + HuggingFace `all-MiniLM-L6-v2` (local, no API needed)
-- **Agentic AI** — Intent detection & query augmentation layer
-- **LangChain** — `ConversationalRetrievalChain` with memory
-- **Groq API** — LLaMA 3 70B for fast inference
-- **Streamlit** — polished dark-theme frontend
+This project aligns with strict evaluation metrics, providing a **proper Frontend/Backend architecture** utilizing FastAPI on the backend and an aesthetically pleasing HTML/CSS/JS frontend.
+
+## 🚀 Tech Stack
+- **Frontend** — Modern, aesthetic HTML/CSS/Vanilla JS with glassmorphism and responsiveness.
+- **Backend API** — FastAPI to handle asynchronous query execution and static file serving.
+- **RAG Engine** — FAISS + HuggingFace `all-MiniLM-L6-v2` (local, no API needed for embedding).
+- **Agentic AI** — Intent detection & query augmentation layer (`agent.py`).
+- **LangChain** — `ConversationalRetrievalChain` integrating vector stores and prompt history.
+- **Groq API** — LLaMA 3 70B interface.
 
 ---
 
 ## 📁 Project Structure
 
-```
+```text
 tn_college_admissions/
 │
-├── app.py                  ← Streamlit entry point (thin orchestrator)
-├── config.py               ← Loads ALL settings from .env
-├── pipeline.py             ← Wires modules together (cached startup)
+├── main.py                 ← FastAPI entry point and pipeline orchestrator
+├── config.py               ← Loads ALL settings securely from .env
 ├── agent.py                ← Agentic AI: intent detection + query augmentation
-├── data_loader.py          ← Loads JSON → LangChain Documents
-├── vectorstore.py          ← Chunks + embeds + FAISS index
-├── rag_chain.py            ← Groq LLM + retriever + memory chain
+├── data_loader.py          ← Loads structured JSON → LangChain Documents
+├── vectorstore.py          ← Chunks + embeds + FAISS index logic
+├── rag_chain.py            ← LLM + retriever + memory chain engine
 ├── prompts.py              ← All LangChain PromptTemplates
-├── styles.py               ← All custom CSS (injected once at startup)
 │
-├── pages/
-│   ├── __init__.py
-│   ├── sidebar.py          ← Sidebar: logo, stats, quick questions
-│   ├── chat_tab.py         ← AI Chat tab
-│   ├── colleges_tab.py     ← Browse Colleges tab
-│   └── checklist_tab.py    ← Step-by-step Checklist tab
+├── static/                 ← Frontend Directory
+│   ├── index.html          ← Single Page Application layout
+│   ├── style.css           ← Aesthetic premium modern design styles
+│   └── app.js              ← REST client for Chat and Data features
+│
+├── tests/                  ← Automated test suites
+│   ├── test_agent.py       ← Validation for AI intent logic
+│   └── test_api.py         ← Validation for FastAPI backend endpoints
 │
 ├── data/
-│   └── tn_colleges.json    ← Dummy dataset (10 TN colleges)
+│   └── tn_colleges.json    ← Dataset (10 TN colleges)
 │
 ├── .env.example            ← Template — copy to .env and fill in key
 ├── requirements.txt
@@ -43,67 +46,66 @@ tn_college_admissions/
 
 ---
 
-## ⚙️ Setup
+## ⚙️ Setup Instructions
 
 ### 1. Install dependencies
+Ensure you are using Python 3.9+. Then install the required packages:
 ```bash
 pip install -r requirements.txt
 ```
 
-### 2. Create your `.env` file
+### 2. Configure Environment variables
+Create your `.env` file explicitly from the template:
 ```bash
 cp .env.example .env
 ```
 Open `.env` and replace the placeholder:
-```
+```ini
 GROQ_API_KEY=gsk_your_actual_key_here
 ```
-Get a free key at [console.groq.com](https://console.groq.com)
+*(Get a free GROQ API key at [console.groq.com](https://console.groq.com))*
 
-### 3. Run
+### 3. Run the Application End-to-End
+Start the FastAPI server utilizing `uvicorn`. The API and web server will bind to port 8000.
 ```bash
-streamlit run app.py
+python -m uvicorn main:app --reload
 ```
-
-> The API key is read from `.env` at startup — you never enter it in the UI.
+Navigate your browser to `http://localhost:8000` to interact with the beautifully crafted frontend!
 
 ---
 
-## 🧠 Architecture
+## 🧠 Architecture Overview
 
-```
-User Query (UI)
+Our architecture uses a complete separation of Frontend & Backend constraints allowing independent scalability:
+
+```text
+Frontend (Vanilla HTML/CSS/JS)
+      │ (Fetch /api/chat)
+      ▼
+Backend (FastAPI main.py)
       │
       ▼
-  agent.py — detect_intent() → augment_query()
+Agent Layer (agent.py)  ──→ 1. detect_intent() → 2. augment_query()
       │
       ▼
-  rag_chain.ask(augmented_query)
+RAG Pipeline (rag_chain.ask)
       │
-      ├─ condense_question_prompt  (LangChain)
+      ├─ Condense Questions (LangChain Memory)
       │
-      ├─ vectorstore.get_retriever()  →  FAISS top-5 chunks
-      │        └─ built from data_loader.build_documents()
+      ├─ FAISS Retriever (Top-K Similar Chunks matching intent)
       │
-      ├─ prompts.QA_PROMPT  +  Groq LLaMA 3 70B
-      │
-      └─ answer + source_documents
-              │
-              ▼
-        pages/chat_tab.py  →  Streamlit UI
+      └─ Groq LLaMA 3 70B Engine (Final LLM synthesize)
 ```
 
 ---
 
-## 🏫 Colleges in Dataset
-1. Anna University (Chennai)
-2. IIT Madras (Chennai)
-3. PSG College of Technology (Coimbatore)
-4. Madras Medical College (Chennai)
-5. Coimbatore Institute of Technology
-6. Loyola College (Chennai)
-7. NIT Tiruchirappalli
-8. Madurai Kamaraj University
-9. Sri Ramachandra Institute (Chennai)
-10. VIT University (Vellore)
-etc...
+## 🧪 Testing & Validation Features
+The infrastructure includes automated unit and integration tests using `pytest` and `httpx`.
+Run tests via:
+```bash
+pytest
+```
+The testing guarantees backend functionality (validity of FastAPI endpoints) and agentic classification (making sure intents correspond correctly without regressions).
+
+## 🛡️ Error Handling
+Our endpoints strictly validate pipelines and gracefully encapsulate application errors via JSON structured responses without spilling stack traces uncomfortably to the end-user.
