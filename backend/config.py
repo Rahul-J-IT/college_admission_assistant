@@ -16,7 +16,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 # ── Load .env from project root (works regardless of CWD) ────────
-_PROJECT_ROOT = Path(__file__).parent
+_PROJECT_ROOT = Path(__file__).parent.parent
 _ENV_PATH     = _PROJECT_ROOT / ".env"
 
 load_dotenv(dotenv_path=_ENV_PATH, override=False)   # won't override already-set env vars
@@ -51,4 +51,4 @@ EMBEDDING_MODEL: str = os.getenv(
 RETRIEVER_TOP_K: int = int(os.getenv("RETRIEVER_TOP_K", "5"))
 
 # ── Dataset ───────────────────────────────────────────────────────
-DATA_PATH: Path = _PROJECT_ROOT / os.getenv("DATA_PATH", "data/tamil_nadu_colleges.json")
+DATA_PATH: Path = Path(__file__).parent / os.getenv("DATA_PATH", "data/tn_colleges.json")

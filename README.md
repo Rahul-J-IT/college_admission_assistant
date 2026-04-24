@@ -55,7 +55,7 @@ pip install -r requirements.txt
 ```
 
 ### 2. Configure Environment variables
-Create your `.env` file explicitly from the template:
+Create your `.env` file explicitly from the template in the root directory:
 ```bash
 cp .env.example .env
 ```
@@ -66,8 +66,9 @@ GROQ_API_KEY=gsk_your_actual_key_here
 *(Get a free GROQ API key at [console.groq.com](https://console.groq.com))*
 
 ### 3. Run the Application End-to-End
-Start the FastAPI server utilizing `uvicorn`. The API and web server will bind to port 8000.
+Navigate into the `backend/` module to start the FastAPI server:
 ```bash
+cd backend
 python -m uvicorn main:app --reload
 ```
 Navigate your browser to `http://localhost:8000` to interact with the beautifully crafted frontend!
