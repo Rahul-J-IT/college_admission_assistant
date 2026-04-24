@@ -51,4 +51,4 @@ EMBEDDING_MODEL: str = os.getenv(
 RETRIEVER_TOP_K: int = int(os.getenv("RETRIEVER_TOP_K", "5"))
 
 # ── Dataset ───────────────────────────────────────────────────────
-DATA_PATH: Path = _PROJECT_ROOT / os.getenv("DATA_PATH", "data/tn_colleges.json")
+DATA_PATH: Path = _PROJECT_ROOT / os.getenv("DATA_PATH", "data/tamil_nadu_colleges.json")
